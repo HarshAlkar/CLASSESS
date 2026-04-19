@@ -43,6 +43,11 @@ const Login = () => {
       return;
     }
     setLoading(true);
+    // Clear all bypass flags for real logins
+    localStorage.removeItem("admin_bypass");
+    localStorage.removeItem("faculty_bypass");
+    localStorage.removeItem("student_bypass");
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email: parsed.data.email,
       password: parsed.data.password,
@@ -114,6 +119,7 @@ const Login = () => {
                   onClick={() => {
                     localStorage.setItem("faculty_bypass", "false");
                     localStorage.setItem("admin_bypass", "false");
+                    localStorage.setItem("student_bypass", "true");
                     localStorage.setItem("user", JSON.stringify({ id: "student-1", full_name: "Test Student", standard: "10th", requested_role: "student", status: "approved" }));
                     navigate("/student");
                   }} 
@@ -125,6 +131,7 @@ const Login = () => {
                   onClick={() => {
                     localStorage.setItem("faculty_bypass", "true");
                     localStorage.setItem("admin_bypass", "false");
+                    localStorage.setItem("student_bypass", "false");
                     localStorage.setItem("user", JSON.stringify({ id: "faculty-1", full_name: "Test Teacher", requested_role: "faculty", status: "approved" }));
                     navigate("/faculty");
                   }} 
@@ -137,6 +144,7 @@ const Login = () => {
                 onClick={() => {
                   localStorage.setItem("admin_bypass", "true");
                   localStorage.setItem("faculty_bypass", "false");
+                  localStorage.setItem("student_bypass", "false");
                   localStorage.setItem("user", JSON.stringify({ 
                     id: "admin-1", 
                     full_name: "Super Admin", 
