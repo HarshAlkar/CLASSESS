@@ -102,7 +102,13 @@ const Login = () => {
                 {loading ? "Signing in…" : "Login"}
               </Button>
             </form>
-            <div className="pt-6 border-t border-gray-100 flex flex-col gap-2 mt-2">
+            <p className="text-center mt-6 text-sm text-muted-foreground">
+              Don't have an account?{" "}
+              <Link to="/signup" className="text-primary font-semibold hover:underline">
+                Sign Up
+              </Link>
+            </p>
+            <div className="pt-6 border-t border-gray-100 flex flex-col gap-2 mt-4">
               <div className="flex gap-2">
                 <Button 
                   onClick={() => {
