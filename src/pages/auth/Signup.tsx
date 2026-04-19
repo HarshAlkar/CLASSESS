@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { GraduationCap, Briefcase, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
@@ -111,11 +112,31 @@ const Signup = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-xs uppercase font-bold text-gray-400">Standard / Class</Label>
-                  <Input placeholder="e.g. 10th" value={form.standard} onChange={e => setForm({...form, standard: e.target.value})} />
+                  <Select onValueChange={(val) => setForm({ ...form, standard: val })} value={form.standard}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="5th">5th Standard</SelectItem>
+                      <SelectItem value="6th">6th Standard</SelectItem>
+                      <SelectItem value="7th">7th Standard</SelectItem>
+                      <SelectItem value="8th">8th Standard</SelectItem>
+                      <SelectItem value="9th">9th Standard</SelectItem>
+                      <SelectItem value="10th">10th Standard</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="space-y-2">
                   <Label className="text-xs uppercase font-bold text-gray-400">Medium</Label>
-                  <Input placeholder="English / Marathi" value={form.medium} onChange={e => setForm({...form, medium: e.target.value})} />
+                  <Select onValueChange={(val) => setForm({ ...form, medium: val })} value={form.medium}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="English">English</SelectItem>
+                      <SelectItem value="Marathi">Marathi</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             )}
